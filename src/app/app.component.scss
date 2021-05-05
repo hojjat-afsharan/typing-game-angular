@@ -1,0 +1,29 @@
+.top-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 10px;
+
+  button {
+    margin-top: 5px;
+    width: 20%;
+  }
+
+
+}
+
+.body {
+  margin-top: 10px;
+  //user-select: none;
+}
+
+p {
+  word-wrap: break-word;
+}
+
+.text {
+  font-size: 32px;
+}
+

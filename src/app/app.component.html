@@ -1,0 +1,70 @@
+<div *ngIf="!gameStarted" class="top-menu">
+  Choose difficulty:
+  <button class="button is-info" (click)="choose(0)">Easy</button>
+  <button class="button is-success" (click)="choose(1)">Normal</button>
+  <button class="button is-warning" (click)="choose(2)">Hard</button>
+  <button class="button is-danger" (click)="choose(3)">Insane</button>
+</div>
+
+
+<div class="body" *ngIf="gameStarted">
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">Typing Challenge</p>
+            </div>
+          </div>
+
+          <div class="content">
+            <p>
+              <span class="text"
+                *ngFor="let letter of splittedRandomText(); let i = index"
+                [ngStyle]="{
+                  color: getColor(i),
+                  backgroundColor: getBackgroundColor(i)
+                }"
+              >
+                <span>{{ letter }}</span>
+              </span>
+            </p>
+
+            <textarea
+              class="textarea is-primary"
+              type="textarea"
+              placeholder="type in here"
+              (input)="getInput($event.target)"
+              [disabled]="ended"
+              [value]="currentTyped"
+              rows="10"
+              autofocus
+            > </textarea>
+          </div>
+
+          <div *ngIf="randomText === currentTyped" class="card-footer">
+
+            <div class="card-footer-item columns">
+              <div class=" column">Success!</div>
+              <div class="column">Time: {{timeElapsed}} seconds.</div>
+              <div class="column">
+                Type Speed: {{typeSpeed}}
+                <h2></h2>
+              </div>
+            </div>
+
+
+          </div>
+
+
+
+
+          <div>
+            <button #resetBtn class="button" [ngClass]="{'is-light':!ended,'is-warning': ended}" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
